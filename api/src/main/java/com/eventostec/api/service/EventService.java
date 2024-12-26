@@ -38,6 +38,7 @@ public class EventService {
 
     @Autowired
     private EventRepository repository;
+    private AddressService addressService;
 
     public Event createEvent(EventRequestDTO data) {
         logger.info("Iniciando criação do evento...");
@@ -63,6 +64,11 @@ public class EventService {
 
         newEvent = repository.save(newEvent);
         logger.info("Evento criado e salvo no banco de dados com sucesso. ID: {}", newEvent.getId());
+        
+        if(!data.remote()){
+            this.addressService.createAddress(data, newEvent);
+        }
+        
         return newEvent;
 
     }
