@@ -1,10 +1,8 @@
 package com.eventostec.api.domain.event;
 
+import com.eventostec.api.domain.address.Address;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -30,6 +28,7 @@ public class Event {
     private Boolean remote;
     private Date date;
 
+
       public void setTitle(String title) {
         this.title = title;
     }
@@ -54,14 +53,19 @@ public class Event {
         this.date = date;
     }
 
+    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+    private Address address;
 
-    public UUID getId() {
-        return id;
+    public Address getAddress() {
+        return address;
     }
+
+    public UUID getId() {return id;}
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public String getImgUrl() { return imgUrl; }
     public String getEventUrl() { return eventUrl; }
     public Boolean getRemote() { return remote; }
     public Date getDate() { return date; }
+
 }

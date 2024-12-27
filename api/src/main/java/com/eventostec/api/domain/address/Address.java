@@ -28,6 +28,18 @@ public class Address {
     @JoinColumn(name = "event_id")
     private Event event;
 
+    public String getCity() {
+        return city;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
     public void setCity(String city) {
         this.city = city;
     }

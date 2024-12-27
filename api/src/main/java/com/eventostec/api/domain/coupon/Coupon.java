@@ -14,10 +14,9 @@ import java.util.UUID;
 @Table(name = "coupon")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Coupon {
-
     @Id
     @GeneratedValue
     private UUID id;
@@ -30,23 +29,35 @@ public class Coupon {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getCode() {
+        return code;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public Date getValid() {
+        return valid;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
     public void setValid(Date valid) {
         this.valid = valid;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
